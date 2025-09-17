@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Recommendations</title>
+</head>
+<body>
+    <h1>Top Internship Matches For You</h1>
+    {% for internship, score, reason in recommendations %}
+    <div style="border: 1px solid black; padding: 10px; margin: 10px;">
+        <h2>{{ internship.title }}</h2>
+        <p><strong>Sector:</strong> {{ internship.sector }}</p>
+        <p><strong>Location:</strong> {{ internship.location }}</p>
+        <p><i>Why it's a match: {{ reason }}</i></p>
+    </div>
+    {% endfor %}
+</body>
+</html>
