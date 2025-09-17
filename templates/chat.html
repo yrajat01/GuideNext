@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Chat Assistant</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+        #chat-container { max-width: 800px; margin: auto; padding: 20px; }
+        #chat-box { 
+            height: 400px; 
+            overflow-y: auto; 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .user-msg { 
+            text-align: right; 
+            color: #0066cc; 
+            margin: 10px 0;
+        }
+        .ai-msg { 
+            text-align: left; 
+            color: #009933; 
+            margin: 10px 0;
+        }
+        #chat-form { 
+            display: flex; 
+            gap: 10px;
+        }
+        #user-input { 
+            flex: 1; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px;
+        }
+        #chat-form button { 
+            padding: 10px 20px; 
+            background: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer;
+        }
+        #chat-form button:hover { background: #45a049; }
+        .back-button { 
+            display: inline-block; 
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            background: #666; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px;
+        }
+        .back-button:hover { background: #555; }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h2>💬 Internship Query Assistant</h2>
+        <p><strong>Ask me anything about:</strong></p>
+        <ul>
+            <li>Internship requirements</li>
+            <li>Required skills</li>
+            <li>Application process</li>
+            <li>Location details</li>
+        </ul>
+        
+        <div id="chat-box">
+            <div class="ai-msg">
+                <strong>AI:</strong> Hello! I'm here to help you with questions about the PM Internship Scheme. What would you like to know?
+            </div>
+        </div>
+        
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your question here..." required>
+            <button type="submit">Send</button>
+        </form>
+        
+        <a href="/" class="back-button">← Back to Main Page</a>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+
+        // Function to add a message to the chat
+        function addMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add(sender + '-msg');
+            msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
+        }
+
+        // Handle form submission
+        chatForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage('You', message);
+            userInput.value = ''; // Clear input
+            userInput.disabled = true; // Disable input while waiting
+
+            try {
+                // Send message to our backend
+                const response = await fetch('/chat/get_response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    addMessage('AI', data.response);
+                } else {
+                    addMessage('AI', `Error: ${data.error}`);
+                }
+            } catch (error) {
+                addMessage('AI', 'Sorry, I could not connect to the server. Please check your internet connection.');
+                console.error('Error:', error);
+            } finally {
+                userInput.disabled = false; // Re-enable input
+                userInput.focus(); // Focus back on input
+            }
+        });
+
+        // Focus on input when page loads
+        userInput.focus();
+    </script>
+</body>
+</html>

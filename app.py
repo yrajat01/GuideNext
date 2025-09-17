@@ -1,5 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify  # Added jsonify here!
 import json
+import requests
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get your API key from the environment variable
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
 app = Flask(__name__)
 
@@ -76,5 +85,104 @@ def recommend():
     # 4. Display the results page
     return render_template('results.html', recommendations=top_recommendations)
 
+# Function to get response from Gemini API - UPDATED ENDPOINT
+def get_gemini_response(user_message):
+    """
+    Gets a response from the Gemini API using HTTP requests.
+    """
+    if not GEMINI_API_KEY:
+        return "Error: API key not configured. Please add GEMINI_API_KEY to your .env file."
+
+    # Try different API endpoints
+    endpoints = [
+        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}",
+        f"https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
+    ]
+    
+    headers = {'Content-Type': 'application/json'}
+
+    # The structured prompt for the model
+    prompt = {
+        "contents": [{
+            "parts": [{
+                "text": f"""You are a helpful assistant for the PM Internship Scheme. Your ONLY purpose is to answer questions about the internships listed on the platform, the application process, required skills, or related topics. You do not answer questions about anything else. If a user asks an unrelated question, you politely decline to answer and steer the conversation back to internships.
+
+User Question: {user_message}
+
+Assistant Answer:"""
+            }]
+        }]
+    }
+
+    for url in endpoints:
+        try:
+            print(f"Trying endpoint: {url}")
+            response = requests.post(url, headers=headers, json=prompt)
+            print(f"Response status: {response.status_code}")
+            
+            if response.status_code == 200:
+                response_data = response.json()
+                print(f"Response data: {response_data}")
+                
+                # Extract the generated text from the response
+                if 'candidates' in response_data and response_data['candidates']:
+                    return response_data['candidates'][0]['content']['parts'][0]['text']
+                else:
+                    return "Sorry, I couldn't process the response correctly."
+            
+            else:
+                print(f"Error response: {response.text}")
+                continue  # Try next endpoint
+                
+        except Exception as e:
+            print(f"Error with endpoint {url}: {e}")
+            continue  # Try next endpoint
+
+    # If all endpoints fail, use a fallback response
+    return get_fallback_response(user_message)
+
+def get_fallback_response(user_message):
+    """
+    Provides fallback responses when Gemini API is not working.
+    """
+    user_message_lower = user_message.lower()
+    
+    if 'data analysis' in user_message_lower or 'skill' in user_message_lower:
+        return "Based on your data analysis skills, I recommend looking into internships like 'Healthcare Data Analysis Intern' or 'Renewable Energy Research Assistant'. These roles often require strong analytical skills. You can check the main page for specific recommendations tailored to your profile!"
+    
+    elif 'how' in user_message_lower or 'apply' in user_message_lower:
+        return "To apply for internships, first use our recommendation tool on the main page to find matches for your skills. Then, you can apply through the official PM Internship Scheme portal once you find opportunities that interest you."
+    
+    elif 'location' in user_message_lower or 'where' in user_message_lower:
+        return "Internships are available in various locations including Urban, Rural, and Remote areas. You can specify your location preference on the main recommendation form to find opportunities in your preferred area."
+    
+    elif 'requirement' in user_message_lower or 'need' in user_message_lower:
+        return "Different internships have different requirements. Common requirements include skills like Data Analysis, Communication, Research, or specific software knowledge. Use the main recommendation tool to see which internships match your specific skills!"
+    
+    else:
+        return "I'm here to help you with PM Internship Scheme questions! You can ask me about required skills, how to apply, location options, or internship requirements. For personalized recommendations, please use the main recommendation tool on our homepage."
+
+# Route to serve the chat page
+@app.route('/chat')
+def chat():
+    return render_template('chat.html')
+
+# API endpoint to handle chat messages
+@app.route('/chat/get_response', methods=['POST'])
+def get_chat_response():
+    try:
+        user_message = request.json.get('message')
+        
+        if not user_message:
+            return jsonify({"error": "No message provided"}), 400
+        
+        # Get response from Gemini
+        ai_response = get_gemini_response(user_message)
+        return jsonify({"response": ai_response})
+    
+    except Exception as e:
+        print(f"Error in chat route: {e}")
+        return jsonify({"error": "An internal server error occurred."}), 500
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0') # Run the server
+    app.run(debug=True, host='0.0.0.0')
