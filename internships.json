@@ -1,16 +1,38 @@
 [
-  {
-    "id": 1,
-    "title": "Healthcare Data Analysis Intern",
-    "required_skills": ["Data Analysis", "Excel", "Statistics"],
-    "sector": "Healthcare",
-    "location": "Delhi"
-  },
-  {
-    "id": 2,
-    "title": "Rural Education Outreach Coordinator",
-    "required_skills": ["Communication", "Teaching"],
-    "sector": "Education",
-    "location": "Rural"
-  }
+    {
+        "id": 1,
+        "title": "Healthcare Data Analysis Intern",
+        "organization": "National Health Mission",
+        "sector": "Healthcare",
+        "location": "Delhi",
+        "required_skills": ["Data Analysis", "Excel", "Statistics", "Report Writing"],
+        "description": "Analyze public health data to identify trends and support report generation."
+    },
+    {
+        "id": 2,
+        "title": "Rural Education Volunteer",
+        "organization": "Rural Literacy Foundation",
+        "sector": "Education",
+        "location": "Rural",
+        "required_skills": ["Communication", "Teaching", "Local Language"],
+        "description": "Teach digital literacy and basic skills in village communities."
+    },
+    {
+        "id": 3,
+        "title": "Renewable Energy Research Assistant",
+        "organization": "Green Future Tech",
+        "sector": "Environment",
+        "location": "Remote",
+        "required_skills": ["Research", "Report Writing", "Data Collection"],
+        "description": "Assist in research on solar panel efficiency and renewable energy sources."
+    },
+    {
+        "id": 4,
+        "title": "Social Media Content Creator",
+        "organization": "Urban Youth Connect",
+        "sector": "Technology",
+        "location": "Urban",
+        "required_skills": ["Social Media", "Writing", "Content Creation"],
+        "description": "Create engaging content for social media platforms to promote community initiatives."
+    }
 ]

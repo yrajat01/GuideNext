@@ -3,59 +3,78 @@ import json
 
 app = Flask(__name__)
 
-# Load our fake internship data
-with open('internships.json', 'r') as f:
-    all_internships = json.load(f)
+# Load internship data from the JSON file
+def load_internships():
+    with open('internships.json', 'r') as f:
+        data = json.load(f)
+    return data
 
-@app.route('/')
-def index():
-    # This just renders the initial form page
-    return render_template('index.html')
-
-@app.route('/recommend', methods=['POST'])
-def recommend():
-    # 1. Get user input from the form
-    user_skills = request.form.getlist('skills') # Gets list of checked skills
-    user_interests = request.form.getlist('interests')
-    user_location = request.form.get('location')
-
-    recommendations = []
-    reasons = []
-
-    # 2. THE RULE-BASED AI LOGIC
-    for internship in all_internships:
+# Our AI Recommendation Logic (Rule-Based Scoring)
+def get_recommendations(user_data, internships):
+    recommended = []
+    for internship in internships:
         score = 0
-        reason = []
+        reasons = [] # List to store reasons for the match
 
-        # Rule 1: Check matching skills
-        for skill in user_skills:
+        # Rule 1: Check for matching skills
+        for skill in user_data['skills']:
             if skill in internship['required_skills']:
-                score += 10
-                reason.append(f"skill {skill}")
+                score += 10 # Give 10 points for each matching skill
+                reasons.append(f"Your skill: {skill}")
 
-        # Rule 2: Check matching sector interest
-        for interest in user_interests:
-            if interest == internship['sector']:
-                score += 8
-                reason.append(f"interest in {interest}")
+        # Rule 2: Check for matching sector interest
+        if user_data['interest'] == internship['sector']:
+            score += 8 # Give 8 points for matching sector
+            reasons.append(f"Your interest: {internship['sector']}")
 
         # Rule 3: Check location preference
-        if user_location == internship['location'] or user_location == "No Preference":
-            score += 5
-            reason.append("location preference")
+        if user_data['location'] == internship['location'] or user_data['location'] == 'No Preference':
+            score += 5 # Give 5 points for matching location or no preference
+            reasons.append("Matches your location preference")
         else:
-            score -= 3 # Penalize mismatched location
+            score -= 3 # Small penalty for location mismatch
 
-        # If the internship scored points, add it to our list
-        if score > 0:
-            recommendations.append((internship, score, ", ".join(reason)))
+        # Only suggest if the score is positive
+        if score > 0 and reasons: # Ensure there is at least one reason
+            # Add the internship, its score, and the reasons to the list
+            recommended.append({
+                'internship': internship,
+                'score': score,
+                'reasons': reasons[:2] # Show top 2 reasons to keep it simple
+            })
 
-    # 3. Sort the list by score (highest first) and pick top 3
-    recommendations.sort(key=lambda x: x[1], reverse=True)
-    top_recommendations = recommendations[:3]
+    # Sort the list by score, highest first
+    recommended.sort(key=lambda x: x['score'], reverse=True)
+    # Return only the top 3 internships
+    return recommended[:3]
 
-    # 4. Send the results to the template for display
+# Route for the homepage
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Route to handle form submission and show results
+@app.route('/recommend', methods=['POST'])
+def recommend():
+    # 1. Get the user's input from the form
+    user_skills = request.form.getlist('skills')
+    user_interest = request.form.get('interest')
+    user_location = request.form.get('location')
+
+    user_data = {
+        'skills': user_skills,
+        'interest': user_interest,
+        'location': user_location
+    }
+
+    # 2. Load our internship data
+    all_internships = load_internships()
+
+    # 3. Get the recommendations using our AI function
+    top_recommendations = get_recommendations(user_data, all_internships)
+
+    # 4. Display the results page
     return render_template('results.html', recommendations=top_recommendations)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0') # Run the server
