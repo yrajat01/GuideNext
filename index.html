@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PM Internship Recommender</title>
+</head>
+<body>
+    <h1>Find Your Perfect Internship</h1>
+    <form action="/recommend" method="post">
+        <h3>Your Skills:</h3>
+        <input type="checkbox" name="skills" value="Data Analysis"> Data Analysis<br>
+        <input type="checkbox" name="skills" value="Communication"> Communication<br>
+        <input type="checkbox" name="skills" value="Writing"> Writing<br>
+        <!-- Add more skills -->
+
+        <h3>Your Interests:</h3>
+        <input type="checkbox" name="interests" value="Healthcare"> Healthcare<br>
+        <input type="checkbox" name="interests" value="Education"> Education<br>
+        <input type="checkbox" name="interests" value="Technology"> Technology<br>
+        <!-- Add more interests -->
+
+        <h3>Location Preference:</h3>
+        <select name="location">
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+            <option value="Remote">Remote</option>
+            <option value="No Preference">No Preference</option>
+        </select>
+
+        <br><br>
+        <input type="submit" value="Get Recommendations">
+    </form>
+</body>
+</html>

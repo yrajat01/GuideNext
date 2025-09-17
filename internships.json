@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Healthcare Data Analysis Intern",
+    "required_skills": ["Data Analysis", "Excel", "Statistics"],
+    "sector": "Healthcare",
+    "location": "Delhi"
+  },
+  {
+    "id": 2,
+    "title": "Rural Education Outreach Coordinator",
+    "required_skills": ["Communication", "Teaching"],
+    "sector": "Education",
+    "location": "Rural"
+  }
+]
