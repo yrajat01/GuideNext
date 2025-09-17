@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Recommendations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>Your Top Internship Matches</h1>
+    
+    {% if recommendations %}
+        <p>We found these internships that are a great fit for you!</p>
+        {% for rec in recommendations %}
+            <div style="border: 2px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 10px;">
+                <h2>{{ rec.internship.title }}</h2>
+                <p><strong>Organization:</strong> {{ rec.internship.organization }}</p>
+                <p><strong>Sector:</strong> {{ rec.internship.sector }}</p>
+                <p><strong>Location:</strong> {{ rec.internship.location }}</p>
+                <p><strong>Description:</strong> {{ rec.internship.description }}</p>
+                <p><strong>Why it's a match:</strong> 
+                    <ul>
+                        {% for reason in rec.reasons %}
+                        <li>{{ reason }}</li>
+                        {% endfor %}
+                    </ul>
+                </p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Sorry, we couldn't find a perfect match based on your inputs. Try broadening your skills or interests!</p>
+    {% endif %}
+
+    <a href="/">← Search Again</a>
+</body>
+</html>

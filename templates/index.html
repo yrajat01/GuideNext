@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Internship Recommender</title>
+    <!-- Adding Water.css for simple, beautiful styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+<body>
+    <h1>Find Your Perfect PM Internship</h1>
+    <p>Tell us a bit about yourself. Our AI will find the best matches for you.</p>
+
+    <form action="/recommend" method="post">
+        <h3>Your Skills:</h3>
+        <div>
+            <input type="checkbox" id="data_analysis" name="skills" value="Data Analysis">
+            <label for="data_analysis">Data Analysis</label>
+        </div>
+        <div>
+            <input type="checkbox" id="excel" name="skills" value="Excel">
+            <label for="excel">Excel</label>
+        </div>
+        <div>
+            <input type="checkbox" id="communication" name="skills" value="Communication">
+            <label for="communication">Communication</label>
+        </div>
+        <div>
+            <input type="checkbox" id="teaching" name="skills" value="Teaching">
+            <label for="teaching">Teaching</label>
+        </div>
+        <div>
+            <input type="checkbox" id="research" name="skills" value="Research">
+            <label for="research">Research</label>
+        </div>
+        <div>
+            <input type="checkbox" id="writing" name="skills" value="Writing">
+            <label for="writing">Writing</label>
+        </div>
+        <!-- Add more skills as needed -->
+
+        <br>
+        <h3>Your Primary Sector of Interest:</h3>
+        <select name="interest" id="interest" required>
+            <option value="" disabled selected>Select an interest</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Education">Education</option>
+            <option value="Environment">Environment</option>
+            <option value="Technology">Technology</option>
+        </select>
+
+        <br><br>
+        <h3>Your Location Preference:</h3>
+        <select name="location" id="location" required>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+            <option value="Remote">Remote</option>
+            <option value="No Preference">No Preference</option>
+        </select>
+
+        <br><br>
+        <input type="submit" value="Find My Internships!">
+    </form>
+</body>
+</html>
