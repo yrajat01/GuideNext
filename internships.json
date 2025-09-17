@@ -1,38 +1,452 @@
 [
-    {
-        "id": 1,
-        "title": "Healthcare Data Analysis Intern",
-        "organization": "National Health Mission",
-        "sector": "Healthcare",
-        "location": "Delhi",
-        "required_skills": ["Data Analysis", "Excel", "Statistics", "Report Writing"],
-        "description": "Analyze public health data to identify trends and support report generation."
-    },
-    {
-        "id": 2,
-        "title": "Rural Education Volunteer",
-        "organization": "Rural Literacy Foundation",
-        "sector": "Education",
-        "location": "Rural",
-        "required_skills": ["Communication", "Teaching", "Local Language"],
-        "description": "Teach digital literacy and basic skills in village communities."
-    },
-    {
-        "id": 3,
-        "title": "Renewable Energy Research Assistant",
-        "organization": "Green Future Tech",
-        "sector": "Environment",
-        "location": "Remote",
-        "required_skills": ["Research", "Report Writing", "Data Collection"],
-        "description": "Assist in research on solar panel efficiency and renewable energy sources."
-    },
-    {
-        "id": 4,
-        "title": "Social Media Content Creator",
-        "organization": "Urban Youth Connect",
-        "sector": "Technology",
-        "location": "Urban",
-        "required_skills": ["Social Media", "Writing", "Content Creation"],
-        "description": "Create engaging content for social media platforms to promote community initiatives."
-    }
+  {
+    "id": 1,
+    "title": "Healthcare Data Analysis Intern",
+    "organization": "National Health Mission",
+    "sector": "Healthcare",
+    "location": "Delhi",
+    "required_skills": ["Data Analysis", "Excel", "Statistics", "Report Writing"],
+    "description": "Analyze public health data to identify trends and support report generation for government health programs."
+  },
+  {
+    "id": 2,
+    "title": "Rural Education Volunteer",
+    "organization": "Rural Literacy Foundation",
+    "sector": "Education",
+    "location": "Rural",
+    "required_skills": ["Communication", "Teaching", "Local Language"],
+    "description": "Teach digital literacy and basic skills to youth and adults in village communities."
+  },
+  {
+    "id": 3,
+    "title": "Renewable Energy Research Assistant",
+    "organization": "Green Future Tech",
+    "sector": "Environment",
+    "location": "Remote",
+    "required_skills": ["Research", "Report Writing", "Data Collection"],
+    "description": "Assist in research on solar panel efficiency and contribute to building a database of renewable energy sources."
+  },
+  {
+    "id": 4,
+    "title": "Social Media Content Creator",
+    "organization": "Urban Youth Connect",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Social Media", "Writing", "Content Creation"],
+    "description": "Create engaging content for social media platforms to promote community initiatives."
+  },
+  {
+    "id": 5,
+    "title": "Agricultural Technology Intern",
+    "organization": "FarmTech Solutions",
+    "sector": "Agriculture",
+    "location": "Rural",
+    "required_skills": ["Technology", "Research", "Data Collection", "Communication"],
+    "description": "Work on technology-driven solutions to improve farming practices and increase agricultural productivity."
+  },
+  {
+    "id": 6,
+    "title": "Public Policy Research Intern",
+    "organization": "Center for Policy Studies",
+    "sector": "Governance",
+    "location": "Delhi",
+    "required_skills": ["Research", "Report Writing", "Data Analysis", "Policy Analysis"],
+    "description": "Conduct research on public policies and contribute to policy recommendation reports."
+  },
+  {
+    "id": 7,
+    "title": "Women Empowerment Coordinator",
+    "organization": "Women Empowerment Foundation",
+    "sector": "Social Work",
+    "location": "Urban",
+    "required_skills": ["Communication", "Community Outreach", "Teaching", "Event Management"],
+    "description": "Coordinate empowerment programs and workshops for women in urban communities."
+  },
+  {
+    "id": 8,
+    "title": "Disaster Management Assistant",
+    "organization": "National Disaster Response Force",
+    "sector": "Healthcare",
+    "location": "Multiple Locations",
+    "required_skills": ["Emergency Response", "Communication", "First Aid", "Logistics"],
+    "description": "Assist in disaster preparedness and response operations across different regions."
+  },
+  {
+    "id": 9,
+    "title": "Digital Marketing Intern",
+    "organization": "StartUp India",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Digital Marketing", "Social Media", "SEO", "Content Writing"],
+    "description": "Develop and implement digital marketing strategies for startup promotion."
+  },
+  {
+    "id": 10,
+    "title": "Water Conservation Field Assistant",
+    "organization": "Water Resources Ministry",
+    "sector": "Environment",
+    "location": "Rural",
+    "required_skills": ["Field Work", "Data Collection", "Community Outreach", "Environmental Science"],
+    "description": "Work on field projects related to water conservation and community awareness programs."
+  },
+  {
+    "id": 11,
+    "title": "Legal Research Intern",
+    "organization": "Supreme Court of India",
+    "sector": "Law",
+    "location": "Delhi",
+    "required_skills": ["Legal Research", "Writing", "Analysis", "Documentation"],
+    "description": "Assist in legal research and case analysis for ongoing judicial proceedings."
+  },
+  {
+    "id": 12,
+    "title": "Tourism Promotion Assistant",
+    "organization": "Ministry of Tourism",
+    "sector": "Tourism",
+    "location": "Multiple Locations",
+    "required_skills": ["Communication", "Content Writing", "Social Media", "Event Management"],
+    "description": "Promote tourism initiatives and cultural heritage through various media channels."
+  },
+  {
+    "id": 13,
+    "title": "Cybersecurity Trainee",
+    "organization": "National Cyber Security Agency",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Cybersecurity", "Networking", "Programming", "Problem Solving"],
+    "description": "Learn and assist in cybersecurity operations and threat analysis."
+  },
+  {
+    "id": 14,
+    "title": "Public Health Surveyor",
+    "organization": "World Health Organization",
+    "sector": "Healthcare",
+    "location": "Rural",
+    "required_skills": ["Data Collection", "Survey Methods", "Communication", "Report Writing"],
+    "description": "Conduct health surveys and collect data for public health research in rural areas."
+  },
+  {
+    "id": 15,
+    "title": "Renewable Energy Field Technician",
+    "organization": "Solar Power India",
+    "sector": "Environment",
+    "location": "Remote",
+    "required_skills": ["Technical Skills", "Installation", "Maintenance", "Problem Solving"],
+    "description": "Assist in installation and maintenance of solar power systems in remote locations."
+  },
+  {
+    "id": 16,
+    "title": "Financial Literacy Educator",
+    "organization": "Reserve Bank of India",
+    "sector": "Finance",
+    "location": "Urban",
+    "required_skills": ["Teaching", "Finance", "Communication", "Presentation"],
+    "description": "Educate communities about financial literacy and banking services."
+  },
+  {
+    "id": 17,
+    "title": "Wildlife Conservation Volunteer",
+    "organization": "Wildlife Protection Society",
+    "sector": "Environment",
+    "location": "Remote",
+    "required_skills": ["Field Work", "Data Collection", "Conservation", "Physical Fitness"],
+    "description": "Participate in wildlife conservation projects and habitat protection activities."
+  },
+  {
+    "id": 18,
+    "title": "Startup Incubation Assistant",
+    "organization": "Atal Innovation Mission",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Business Development", "Communication", "Research", "Mentoring"],
+    "description": "Support startup incubation programs and assist new entrepreneurs."
+  },
+  {
+    "id": 19,
+    "title": "Cultural Heritage Documentarian",
+    "organization": "Archaeological Survey of India",
+    "sector": "Culture",
+    "location": "Multiple Locations",
+    "required_skills": ["Research", "Documentation", "Photography", "Writing"],
+    "description": "Document and preserve cultural heritage sites and traditions."
+  },
+  {
+    "id": 20,
+    "title": "Telemedicine Coordinator",
+    "organization": "e-Health Initiative",
+    "sector": "Healthcare",
+    "location": "Remote",
+    "required_skills": ["Coordination", "Technology", "Communication", "Healthcare"],
+    "description": "Coordinate telemedicine services for remote healthcare delivery."
+  },
+  {
+    "id": 21,
+    "title": "Artificial Intelligence Research Intern",
+    "organization": "IIT Research Lab",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Programming", "Machine Learning", "Research", "Mathematics"],
+    "description": "Participate in AI research projects and algorithm development."
+  },
+  {
+    "id": 22,
+    "title": "Rural Infrastructure Surveyor",
+    "organization": "Ministry of Rural Development",
+    "sector": "Infrastructure",
+    "location": "Rural",
+    "required_skills": ["Surveying", "Data Collection", "Technical Drawing", "Report Writing"],
+    "description": "Survey and document rural infrastructure needs and development projects."
+  },
+  {
+    "id": 23,
+    "title": "Public Transportation Analyst",
+    "organization": "Urban Development Authority",
+    "sector": "Infrastructure",
+    "location": "Urban",
+    "required_skills": ["Data Analysis", "Transportation", "Excel", "Report Writing"],
+    "description": "Analyze public transportation data and suggest improvements for urban mobility."
+  },
+  {
+    "id": 24,
+    "title": "Clean Energy Advocate",
+    "organization": "Climate Action Network",
+    "sector": "Environment",
+    "location": "Urban",
+    "required_skills": ["Communication", "Public Speaking", "Research", "Community Outreach"],
+    "description": "Advocate for clean energy solutions and conduct awareness campaigns."
+  },
+  {
+    "id": 25,
+    "title": "Digital Skills Trainer",
+    "organization": "Digital India Initiative",
+    "sector": "Technology",
+    "location": "Rural",
+    "required_skills": ["Teaching", "Computer Skills", "Communication", "Patience"],
+    "description": "Train rural communities in basic digital literacy and computer skills."
+  },
+  {
+    "id": 26,
+    "title": "Public Library Assistant",
+    "organization": "National Library System",
+    "sector": "Education",
+    "location": "Urban",
+    "required_skills": ["Organization", "Customer Service", "Research", "Document Management"],
+    "description": "Assist in library operations and help patrons with research and information access."
+  },
+  {
+    "id": 27,
+    "title": "Food Security Researcher",
+    "organization": "Food and Agriculture Organization",
+    "sector": "Agriculture",
+    "location": "Rural",
+    "required_skills": ["Research", "Data Analysis", "Agriculture", "Report Writing"],
+    "description": "Research food security issues and sustainable agricultural practices."
+  },
+  {
+    "id": 28,
+    "title": "Disability Inclusion Assistant",
+    "organization": "Accessibility India Foundation",
+    "sector": "Social Work",
+    "location": "Urban",
+    "required_skills": ["Community Outreach", "Empathy", "Communication", "Accessibility"],
+    "description": "Work on disability inclusion programs and accessibility initiatives."
+  },
+  {
+    "id": 29,
+    "title": "Urban Planning Intern",
+    "organization": "City Development Authority",
+    "sector": "Infrastructure",
+    "location": "Urban",
+    "required_skills": ["Urban Planning", "Research", "CAD", "Data Analysis"],
+    "description": "Assist in urban planning projects and sustainable city development initiatives."
+  },
+  {
+    "id": 30,
+    "title": "Traditional Crafts Promoter",
+    "organization": "Handloom and Handicrafts Board",
+    "sector": "Culture",
+    "location": "Rural",
+    "required_skills": ["Marketing", "Communication", "Cultural Knowledge", "Sales"],
+    "description": "Promote traditional crafts and help artisans reach wider markets."
+  },
+  {
+    "id": 31,
+    "title": "Mental Health Awareness Volunteer",
+    "organization": "Mental Health Foundation",
+    "sector": "Healthcare",
+    "location": "Urban",
+    "required_skills": ["Psychology", "Communication", "Empathy", "Community Outreach"],
+    "description": "Raise awareness about mental health issues and support community programs."
+  },
+  {
+    "id": 32,
+    "title": "Sports Development Coordinator",
+    "organization": "Sports Authority of India",
+    "sector": "Sports",
+    "location": "Multiple Locations",
+    "required_skills": ["Sports", "Coordination", "Communication", "Event Management"],
+    "description": "Coordinate sports development programs and youth sports initiatives."
+  },
+  {
+    "id": 33,
+    "title": "Waste Management Educator",
+    "organization": "Clean India Mission",
+    "sector": "Environment",
+    "location": "Urban",
+    "required_skills": ["Teaching", "Environmental Science", "Communication", "Community Outreach"],
+    "description": "Educate communities about waste management and recycling practices."
+  },
+  {
+    "id": 34,
+    "title": "Microfinance Field Officer",
+    "organization": "Small Industries Development Bank",
+    "sector": "Finance",
+    "location": "Rural",
+    "required_skills": ["Finance", "Communication", "Field Work", "Documentation"],
+    "description": "Work with rural entrepreneurs on microfinance and small business development."
+  },
+  {
+    "id": 35,
+    "title": "Language Translation Assistant",
+    "organization": "National Translation Mission",
+    "sector": "Education",
+    "location": "Remote",
+    "required_skills": ["Translation", "Languages", "Writing", "Research"],
+    "description": "Assist in translation of educational materials and government documents."
+  },
+  {
+    "id": 36,
+    "title": "Disaster Recovery Coordinator",
+    "organization": "National Disaster Management Authority",
+    "sector": "Social Work",
+    "location": "Multiple Locations",
+    "required_skills": ["Coordination", "Logistics", "Communication", "Emergency Management"],
+    "description": "Coordinate post-disaster recovery efforts and rehabilitation programs."
+  },
+  {
+    "id": 37,
+    "title": "Renewable Energy Policy Analyst",
+    "organization": "Ministry of New and Renewable Energy",
+    "sector": "Environment",
+    "location": "Delhi",
+    "required_skills": ["Policy Analysis", "Research", "Report Writing", "Energy Sector"],
+    "description": "Analyze renewable energy policies and contribute to policy development."
+  },
+  {
+    "id": 38,
+    "title": "Community Radio Producer",
+    "organization": "Prasar Bharati",
+    "sector": "Media",
+    "location": "Rural",
+    "required_skills": ["Audio Production", "Communication", "Content Creation", "Local Language"],
+    "description": "Produce content for community radio stations serving rural areas."
+  },
+  {
+    "id": 39,
+    "title": "Agricultural Marketing Assistant",
+    "organization": "National Agricultural Cooperative",
+    "sector": "Agriculture",
+    "location": "Rural",
+    "required_skills": ["Marketing", "Communication", "Agriculture", "Sales"],
+    "description": "Help farmers with marketing strategies and market access for their produce."
+  },
+  {
+    "id": 40,
+    "title": "Heritage Site Guide",
+    "organization": "Tourism Development Corporation",
+    "sector": "Tourism",
+    "location": "Multiple Locations",
+    "required_skills": ["History", "Communication", "Public Speaking", "Cultural Knowledge"],
+    "description": "Serve as a guide at heritage sites and provide historical information to visitors."
+  },
+  {
+    "id": 41,
+    "title": "Data Privacy Assistant",
+    "organization": "Digital Protection Agency",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Data Protection", "Research", "Communication", "Legal Knowledge"],
+    "description": "Work on data privacy initiatives and public awareness campaigns."
+  },
+  {
+    "id": 42,
+    "title": "Rural Healthcare Navigator",
+    "organization": "National Health Mission",
+    "sector": "Healthcare",
+    "location": "Rural",
+    "required_skills": ["Healthcare", "Communication", "Coordination", "Community Outreach"],
+    "description": "Help rural communities navigate healthcare services and access medical care."
+  },
+  {
+    "id": 43,
+    "title": "Sustainable Fashion Intern",
+    "organization": "Ethical Fashion Initiative",
+    "sector": "Culture",
+    "location": "Urban",
+    "required_skills": ["Fashion", "Sustainability", "Marketing", "Creativity"],
+    "description": "Work on sustainable fashion initiatives and eco-friendly clothing projects."
+  },
+  {
+    "id": 44,
+    "title": "Youth Mentorship Coordinator",
+    "organization": "National Youth Foundation",
+    "sector": "Education",
+    "location": "Urban",
+    "required_skills": ["Mentoring", "Communication", "Coordination", "Youth Development"],
+    "description": "Coordinate mentorship programs for youth development and career guidance."
+  },
+  {
+    "id": 45,
+    "title": "Smart City Technology Intern",
+    "organization": "Smart Cities Mission",
+    "sector": "Technology",
+    "location": "Urban",
+    "required_skills": ["Technology", "Research", "IoT", "Data Analysis"],
+    "description": "Work on smart city technology projects and urban digital transformation."
+  },
+  {
+    "id": 46,
+    "title": "Traditional Medicine Researcher",
+    "organization": "AYUSH Ministry",
+    "sector": "Healthcare",
+    "location": "Multiple Locations",
+    "required_skills": ["Research", "Traditional Medicine", "Documentation", "Science"],
+    "description": "Research traditional medicine practices and contribute to documentation efforts."
+  },
+  {
+    "id": 47,
+    "title": "Coastal Conservation Volunteer",
+    "organization": "Coastal Protection Authority",
+    "sector": "Environment",
+    "location": "Remote",
+    "required_skills": ["Conservation", "Field Work", "Marine Biology", "Physical Fitness"],
+    "description": "Participate in coastal conservation projects and marine ecosystem protection."
+  },
+  {
+    "id": 48,
+    "title": "Financial Technology Analyst",
+    "organization": "Digital Payments Initiative",
+    "sector": "Finance",
+    "location": "Urban",
+    "required_skills": ["Fintech", "Data Analysis", "Technology", "Finance"],
+    "description": "Analyze fintech trends and contribute to digital payment system development."
+  },
+  {
+    "id": 49,
+    "title": "Tribal Community Liaison",
+    "organization": "Tribal Affairs Ministry",
+    "sector": "Social Work",
+    "location": "Remote",
+    "required_skills": ["Communication", "Cultural Sensitivity", "Community Outreach", "Local Language"],
+    "description": "Serve as a liaison between tribal communities and government services."
+  },
+  {
+    "id": 50,
+    "title": "Space Technology Enthusiast",
+    "organization": "ISRO Outreach Program",
+    "sector": "Technology",
+    "location": "Multiple Locations",
+    "required_skills": ["STEM", "Communication", "Research", "Presentation"],
+    "description": "Participate in space technology outreach and STEM education programs."
+  }
 ]
