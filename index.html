@@ -1,25 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PM Internship Recommender</title>
+    <!-- Adding Water.css for simple, beautiful styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-    <h1>Find Your Perfect Internship</h1>
+    <h1>Find Your Perfect PM Internship</h1>
+    <p>Tell us a bit about yourself. Our AI will find the best matches for you.</p>
+
     <form action="/recommend" method="post">
         <h3>Your Skills:</h3>
-        <input type="checkbox" name="skills" value="Data Analysis"> Data Analysis<br>
-        <input type="checkbox" name="skills" value="Communication"> Communication<br>
-        <input type="checkbox" name="skills" value="Writing"> Writing<br>
-        <!-- Add more skills -->
+        <div>
+            <input type="checkbox" id="data_analysis" name="skills" value="Data Analysis">
+            <label for="data_analysis">Data Analysis</label>
+        </div>
+        <div>
+            <input type="checkbox" id="excel" name="skills" value="Excel">
+            <label for="excel">Excel</label>
+        </div>
+        <div>
+            <input type="checkbox" id="communication" name="skills" value="Communication">
+            <label for="communication">Communication</label>
+        </div>
+        <div>
+            <input type="checkbox" id="teaching" name="skills" value="Teaching">
+            <label for="teaching">Teaching</label>
+        </div>
+        <div>
+            <input type="checkbox" id="research" name="skills" value="Research">
+            <label for="research">Research</label>
+        </div>
+        <div>
+            <input type="checkbox" id="writing" name="skills" value="Writing">
+            <label for="writing">Writing</label>
+        </div>
+        <!-- Add more skills as needed -->
 
-        <h3>Your Interests:</h3>
-        <input type="checkbox" name="interests" value="Healthcare"> Healthcare<br>
-        <input type="checkbox" name="interests" value="Education"> Education<br>
-        <input type="checkbox" name="interests" value="Technology"> Technology<br>
-        <!-- Add more interests -->
+        <br>
+        <h3>Your Primary Sector of Interest:</h3>
+        <select name="interest" id="interest" required>
+            <option value="" disabled selected>Select an interest</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Education">Education</option>
+            <option value="Environment">Environment</option>
+            <option value="Technology">Technology</option>
+        </select>
 
-        <h3>Location Preference:</h3>
-        <select name="location">
+        <br><br>
+        <h3>Your Location Preference:</h3>
+        <select name="location" id="location" required>
             <option value="Urban">Urban</option>
             <option value="Rural">Rural</option>
             <option value="Remote">Remote</option>
@@ -27,7 +59,7 @@
         </select>
 
         <br><br>
-        <input type="submit" value="Get Recommendations">
+        <input type="submit" value="Find My Internships!">
     </form>
 </body>
 </html>
