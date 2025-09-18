@@ -127,45 +127,86 @@ def recommend():
 # Function to get response from Gemini API
 def get_gemini_response(user_message):
     """
-    Gets a response from the Gemini API using HTTP requests.
+    Gets a response from the Gemini API with fallback to rule-based responses.
     """
-    if not GEMINI_API_KEY:
-        return "Error: API key not configured. Please add GEMINI_API_KEY to your .env file."
+    # First, try to use the Gemini API
+    if GEMINI_API_KEY:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
+        headers = {'Content-Type': 'application/json'}
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}"
-    headers = {'Content-Type': 'application/json'}
-
-    prompt = {
-        "contents": [{
-            "parts": [{
-                "text": f"""You are a helpful assistant for the PM Internship Scheme. Your ONLY purpose is to answer questions about the internships listed on the platform, the application process, required skills, or related topics. You do not answer questions about anything else. If a user asks an unrelated question, you politely decline to answer and steer the conversation back to internships.
+        prompt = {
+            "contents": [{
+                "parts": [{
+                    "text": f"""You are a helpful assistant for the PM Internship Scheme. Your ONLY purpose is to answer questions about the internships listed on the platform, the application process, required skills, or related topics. You do not answer questions about anything else. If a user asks an unrelated question, you politely decline to answer and steer the conversation back to internships.
 
 User Question: {user_message}
 
 Assistant Answer:"""
+                }]
             }]
-        }]
-    }
+        }
 
-    try:
-        response = requests.post(url, headers=headers, json=prompt, timeout=10)  # Added timeout
-        response.raise_for_status()
-        response_data = response.json()
-        
-        # Extract the generated text from the response
-        if 'candidates' in response_data and response_data['candidates']:
-            return response_data['candidates'][0]['content']['parts'][0]['text']
-        else:
-            return "Sorry, I couldn't process the response correctly."
+        try:
+            response = requests.post(url, headers=headers, json=prompt, timeout=5)
+            response.raise_for_status()
+            response_data = response.json()
             
-    except requests.exceptions.Timeout:
-        return "Sorry, the request timed out. Please try again."
-    except requests.exceptions.RequestException as e:
-        print(f"Network error: {e}")
-        return "Sorry, I'm having trouble connecting right now. Please try again later."
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-        return "Sorry, an unexpected error occurred."
+            if 'candidates' in response_data and response_data['candidates']:
+                return response_data['candidates'][0]['content']['parts'][0]['text']
+                
+        except Exception as e:
+            print(f"Gemini API failed, using fallback: {e}")
+            # Continue to fallback if API fails
+    
+    # Fallback rule-based responses
+    return get_fallback_response(user_message)
+
+def get_fallback_response(user_message):
+    """
+    Provides intelligent fallback responses when Gemini API is not working.
+    """
+    user_message_lower = user_message.lower()
+    
+    # Internship recommendations based on skills
+    if any(skill in user_message_lower for skill in ['skill', 'know', 'have', 'can do', 'expert']):
+        if 'communication' in user_message_lower:
+            return "With strong communication skills, I recommend internships like 'Rural Education Volunteer', 'Community Radio Producer', or 'Public Health Surveyor'. These roles value excellent communication abilities and community interaction!"
+        elif 'data' in user_message_lower or 'analysis' in user_message_lower:
+            return "Your data analysis skills are perfect for 'Healthcare Data Analysis Intern', 'Renewable Energy Research Assistant', or 'Public Transportation Analyst'. These internships heavily rely on data-driven decision making!"
+        elif 'research' in user_message_lower:
+            return "Research skills are valuable for 'Public Policy Research Intern', 'Traditional Medicine Researcher', or 'Food Security Researcher'. These positions involve in-depth analysis and documentation!"
+        elif 'technology' in user_message_lower or 'tech' in user_message_lower:
+            return "Tech skills open doors to 'Cybersecurity Trainee', 'Digital Marketing Intern', or 'Artificial Intelligence Research Intern'. The technology sector has diverse opportunities!"
+        else:
+            return "Based on your skills, I recommend using our main recommendation tool on the homepage. It will match your specific skills with the most suitable internships from our database of 50+ opportunities!"
+    
+    # Application process questions
+    elif any(word in user_message_lower for word in ['how to apply', 'apply', 'application', 'process']):
+        return "To apply for internships: 1) Use our recommendation tool on the main page to find matching internships, 2) Review the opportunities, and 3) Apply through the official PM Internship Scheme portal. Would you like specific information about any particular internship?"
+    
+    # Location questions
+    elif any(word in user_message_lower for word in ['where', 'location', 'place', 'city', 'rural', 'urban']):
+        return "Internships are available across various locations: Urban (cities), Rural (villages), Remote (isolated areas), and Multiple Locations. You can specify your preference on the main recommendation form to find opportunities in your preferred area."
+    
+    # Requirement questions
+    elif any(word in user_message_lower for word in ['need', 'require', 'requirement', 'qualification', 'eligibility']):
+        return "Requirements vary by internship. Common requirements include specific skills, educational background, or location flexibility. Use the main recommendation tool to see exact requirements for internships that match your profile!"
+    
+    # Sector questions
+    elif any(word in user_message_lower for word in ['sector', 'field', 'area', 'industry', 'type']):
+        return "We have internships in 15+ sectors including Technology, Healthcare, Education, Environment, Agriculture, Finance, and more. Which sector are you most interested in exploring?"
+    
+    # Greeting/conversation
+    elif any(word in user_message_lower for word in ['hello', 'hi', 'hey', 'how are you', 'kaisi', 'hai']):
+        return "Hello! I'm here to help you with the PM Internship Scheme. I can answer questions about internships, required skills, application process, or location options. What would you like to know?"
+    
+    # Unrelated questions
+    elif any(word in user_message_lower for word in ['biwi', 'wife', 'shadi', 'marriage', 'personal', 'your']):
+        return "I'm here to discuss PM Internship Scheme opportunities only. Please ask me about internships, skills required, application process, or any other scheme-related questions!"
+    
+    # General fallback
+    else:
+        return "I'm here to help you with PM Internship Scheme questions! You can ask me about: • Required skills for specific internships • How to apply • Location options • Different sectors available • Or use our main recommendation tool for personalized matches based on your skills and interests!"
 
 # Route to serve the chat page
 @app.route('/chat')
