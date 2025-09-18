@@ -7,215 +7,223 @@
     <title>PM Internship Recommender</title>
     <!-- Adding Water.css for simple, beautiful styling -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 
 <body>
-    <h1>Find Your Perfect PM Internship</h1>
-    <p>Tell us a bit about yourself. Our AI will find the best matches for you.</p>
+    <div class="container">
+        <header class="app-header">
+            <h1>🎯 GuideNext</h1>
+            <p>AI-Powered Internship Recommendations for PM Scheme</p>
+        </header>
 
-    <form action="/recommend" method="post">
-        <h3>Your Skills:</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-            <!-- Technical Skills -->
-            <div>
-                <input type="checkbox" id="data_analysis" name="skills" value="Data Analysis">
-                <label for="data_analysis">Data Analysis</label>
-            </div>
-            <div>
-                <input type="checkbox" id="excel" name="skills" value="Excel">
-                <label for="excel">Excel</label>
-            </div>
-            <div>
-                <input type="checkbox" id="programming" name="skills" value="Programming">
-                <label for="programming">Programming</label>
-            </div>
-            <div>
-                <input type="checkbox" id="technology" name="skills" value="Technology">
-                <label for="technology">Technology</label>
-            </div>
-            <div>
-                <input type="checkbox" id="digital_marketing" name="skills" value="Digital Marketing">
-                <label for="digital_marketing">Digital Marketing</label>
-            </div>
-            <div>
-                <input type="checkbox" id="seo" name="skills" value="SEO">
-                <label for="seo">SEO</label>
-            </div>
-            <div>
-                <input type="checkbox" id="cybersecurity" name="skills" value="Cybersecurity">
-                <label for="cybersecurity">Cybersecurity</label>
-            </div>
-            <div>
-                <input type="checkbox" id="machine_learning" name="skills" value="Machine Learning">
-                <label for="machine_learning">Machine Learning</label>
-            </div>
-            <div>
-                <input type="checkbox" id="iot" name="skills" value="IoT">
-                <label for="iot">IoT</label>
-            </div>
-            <div>
-                <input type="checkbox" id="cad" name="skills" value="CAD">
-                <label for="cad">CAD</label>
-            </div>
+        <section class="form-section">
+            <h2>Find Your Perfect Internship</h2>
+            <form action="/recommend" method="post">
+                <h3>Your Skills:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <!-- Technical Skills -->
+                    <div>
+                        <input type="checkbox" id="data_analysis" name="skills" value="Data Analysis">
+                        <label for="data_analysis">Data Analysis</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="excel" name="skills" value="Excel">
+                        <label for="excel">Excel</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="programming" name="skills" value="Programming">
+                        <label for="programming">Programming</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="technology" name="skills" value="Technology">
+                        <label for="technology">Technology</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="digital_marketing" name="skills" value="Digital Marketing">
+                        <label for="digital_marketing">Digital Marketing</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="seo" name="skills" value="SEO">
+                        <label for="seo">SEO</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cybersecurity" name="skills" value="Cybersecurity">
+                        <label for="cybersecurity">Cybersecurity</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="machine_learning" name="skills" value="Machine Learning">
+                        <label for="machine_learning">Machine Learning</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="iot" name="skills" value="IoT">
+                        <label for="iot">IoT</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cad" name="skills" value="CAD">
+                        <label for="cad">CAD</label>
+                    </div>
 
-            <!-- Communication & Soft Skills -->
-            <div>
-                <input type="checkbox" id="communication" name="skills" value="Communication">
-                <label for="communication">Communication</label>
-            </div>
-            <div>
-                <input type="checkbox" id="teaching" name="skills" value="Teaching">
-                <label for="teaching">Teaching</label>
-            </div>
-            <div>
-                <input type="checkbox" id="writing" name="skills" value="Writing">
-                <label for="writing">Writing</label>
-            </div>
-            <div>
-                <input type="checkbox" id="content_creation" name="skills" value="Content Creation">
-                <label for="content_creation">Content Creation</label>
-            </div>
-            <div>
-                <input type="checkbox" id="public_speaking" name="skills" value="Public Speaking">
-                <label for="public_speaking">Public Speaking</label>
-            </div>
-            <div>
-                <input type="checkbox" id="presentation" name="skills" value="Presentation">
-                <label for="presentation">Presentation</label>
-            </div>
-            <div>
-                <input type="checkbox" id="translation" name="skills" value="Translation">
-                <label for="translation">Translation</label>
-            </div>
-            <div>
-                <input type="checkbox" id="local_language" name="skills" value="Local Language">
-                <label for="local_language">Local Language</label>
-            </div>
+                    <!-- Communication & Soft Skills -->
+                    <div>
+                        <input type="checkbox" id="communication" name="skills" value="Communication">
+                        <label for="communication">Communication</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="teaching" name="skills" value="Teaching">
+                        <label for="teaching">Teaching</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="writing" name="skills" value="Writing">
+                        <label for="writing">Writing</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="content_creation" name="skills" value="Content Creation">
+                        <label for="content_creation">Content Creation</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="public_speaking" name="skills" value="Public Speaking">
+                        <label for="public_speaking">Public Speaking</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="presentation" name="skills" value="Presentation">
+                        <label for="presentation">Presentation</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="translation" name="skills" value="Translation">
+                        <label for="translation">Translation</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="local_language" name="skills" value="Local Language">
+                        <label for="local_language">Local Language</label>
+                    </div>
 
-            <!-- Research & Analysis -->
-            <div>
-                <input type="checkbox" id="research" name="skills" value="Research">
-                <label for="research">Research</label>
-            </div>
-            <div>
-                <input type="checkbox" id="report_writing" name="skills" value="Report Writing">
-                <label for="report_writing">Report Writing</label>
-            </div>
-            <div>
-                <input type="checkbox" id="statistics" name="skills" value="Statistics">
-                <label for="statistics">Statistics</label>
-            </div>
-            <div>
-                <input type="checkbox" id="policy_analysis" name="skills" value="Policy Analysis">
-                <label for="policy_analysis">Policy Analysis</label>
-            </div>
-            <div>
-                <input type="checkbox" id="data_collection" name="skills" value="Data Collection">
-                <label for="data_collection">Data Collection</label>
-            </div>
-            <div>
-                <input type="checkbox" id="survey_methods" name="skills" value="Survey Methods">
-                <label for="survey_methods">Survey Methods</label>
-            </div>
-            <div>
-                <input type="checkbox" id="legal_research" name="skills" value="Legal Research">
-                <label for="legal_research">Legal Research</label>
-            </div>
+                    <!-- Research & Analysis -->
+                    <div>
+                        <input type="checkbox" id="research" name="skills" value="Research">
+                        <label for="research">Research</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="report_writing" name="skills" value="Report Writing">
+                        <label for="report_writing">Report Writing</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="statistics" name="skills" value="Statistics">
+                        <label for="statistics">Statistics</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="policy_analysis" name="skills" value="Policy Analysis">
+                        <label for="policy_analysis">Policy Analysis</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="data_collection" name="skills" value="Data Collection">
+                        <label for="data_collection">Data Collection</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="survey_methods" name="skills" value="Survey Methods">
+                        <label for="survey_methods">Survey Methods</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="legal_research" name="skills" value="Legal Research">
+                        <label for="legal_research">Legal Research</label>
+                    </div>
 
-            <!-- Field & Practical Skills -->
-            <div>
-                <input type="checkbox" id="field_work" name="skills" value="Field Work">
-                <label for="field_work">Field Work</label>
-            </div>
-            <div>
-                <input type="checkbox" id="community_outreach" name="skills" value="Community Outreach">
-                <label for="community_outreach">Community Outreach</label>
-            </div>
-            <div>
-                <input type="checkbox" id="event_management" name="skills" value="Event Management">
-                <label for="event_management">Event Management</label>
-            </div>
-            <div>
-                <input type="checkbox" id="coordination" name="skills" value="Coordination">
-                <label for="coordination">Coordination</label>
-            </div>
-            <div>
-                <input type="checkbox" id="logistics" name="skills" value="Logistics">
-                <label for="logistics">Logistics</label>
-            </div>
-            <div>
-                <input type="checkbox" id="technical_skills" name="skills" value="Technical Skills">
-                <label for="technical_skills">Technical Skills</label>
-            </div>
-            <div>
-                <input type="checkbox" id="conservation" name="skills" value="Conservation">
-                <label for="conservation">Conservation</label>
-            </div>
-            <div>
-                <input type="checkbox" id="agriculture" name="skills" value="Agriculture">
-                <label for="agriculture">Agriculture</label>
-            </div>
+                    <!-- Field & Practical Skills -->
+                    <div>
+                        <input type="checkbox" id="field_work" name="skills" value="Field Work">
+                        <label for="field_work">Field Work</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="community_outreach" name="skills" value="Community Outreach">
+                        <label for="community_outreach">Community Outreach</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="event_management" name="skills" value="Event Management">
+                        <label for="event_management">Event Management</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="coordination" name="skills" value="Coordination">
+                        <label for="coordination">Coordination</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="logistics" name="skills" value="Logistics">
+                        <label for="logistics">Logistics</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="technical_skills" name="skills" value="Technical Skills">
+                        <label for="technical_skills">Technical Skills</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="conservation" name="skills" value="Conservation">
+                        <label for="conservation">Conservation</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="agriculture" name="skills" value="Agriculture">
+                        <label for="agriculture">Agriculture</label>
+                    </div>
 
-            <!-- Specialized Skills -->
-            <div>
-                <input type="checkbox" id="healthcare" name="skills" value="Healthcare">
-                <label for="healthcare">Healthcare</label>
-            </div>
-            <div>
-                <input type="checkbox" id="finance" name="skills" value="Finance">
-                <label for="finance">Finance</label>
-            </div>
-            <div>
-                <input type="checkbox" id="emergency_response" name="skills" value="Emergency Response">
-                <label for="emergency_response">Emergency Response</label>
-            </div>
-            <div>
-                <input type="checkbox" id="first_aid" name="skills" value="First Aid">
-                <label for="first_aid">First Aid</label>
-            </div>
-            <div>
-                <input type="checkbox" id="mentoring" name="skills" value="Mentoring">
-                <label for="mentoring">Mentoring</label>
-            </div>
-            <div>
-                <input type="checkbox" id="business_development" name="skills" value="Business Development">
-                <label for="business_development">Business Development</label>
-            </div>
-        </div>
+                    <!-- Specialized Skills -->
+                    <div>
+                        <input type="checkbox" id="healthcare" name="skills" value="Healthcare">
+                        <label for="healthcare">Healthcare</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="finance" name="skills" value="Finance">
+                        <label for="finance">Finance</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="emergency_response" name="skills" value="Emergency Response">
+                        <label for="emergency_response">Emergency Response</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="first_aid" name="skills" value="First Aid">
+                        <label for="first_aid">First Aid</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="mentoring" name="skills" value="Mentoring">
+                        <label for="mentoring">Mentoring</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="business_development" name="skills" value="Business Development">
+                        <label for="business_development">Business Development</label>
+                    </div>
+                </div>
 
-        <br>
+                <br>
 
-        <h3>Your Primary Sector of Interest:</h3>
-        <select name="interest" id="interest" required>
-            <option value="" disabled selected>Select an interest</option>
-            <option value="Healthcare">Healthcare</option>
-            <option value="Education">Education</option>
-            <option value="Environment">Environment</option>
-            <option value="Technology">Technology</option>
-            <option value="Agriculture">Agriculture</option>
-            <option value="Governance">Governance</option>
-            <option value="Social Work">Social Work</option>
-            <option value="Law">Law</option>
-            <option value="Tourism">Tourism</option>
-            <option value="Finance">Finance</option>
-            <option value="Culture">Culture</option>
-            <option value="Infrastructure">Infrastructure</option>
-            <option value="Sports">Sports</option>
-            <option value="Media">Media</option>
-        </select>
+                <h3>Your Primary Sector of Interest:</h3>
+                <select name="interest" id="interest" required>
+                    <option value="" disabled selected>Select an interest</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Education">Education</option>
+                    <option value="Environment">Environment</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Agriculture">Agriculture</option>
+                    <option value="Governance">Governance</option>
+                    <option value="Social Work">Social Work</option>
+                    <option value="Law">Law</option>
+                    <option value="Tourism">Tourism</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Infrastructure">Infrastructure</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Media">Media</option>
+                </select>
 
-        <br><br>
-        <h3>Your Location Preference:</h3>
-        <select name="location" id="location" required>
-            <option value="Urban">Urban</option>
-            <option value="Rural">Rural</option>
-            <option value="Remote">Remote</option>
-            <option value="Multiple Locations">Multiple Locations</option>
-            <option value="No Preference">No Preference</option>
-        </select>
-        <br><br>
-        <input type="submit" value="Find My Internships!">
-    </form>
+                <br><br>
+                <h3>Your Location Preference:</h3>
+                <select name="location" id="location" required>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Multiple Locations">Multiple Locations</option>
+                    <option value="No Preference">No Preference</option>
+                </select>
+                <br><br>
+                <input type="submit" value="Find My Internships!">
+            </form>
+        </section>
+    </div>
     <!-- Chat Button -->
     <div style="position: fixed; bottom: 20px; right: 20px;">
         <a href="/chat">
@@ -237,6 +245,7 @@
             </button>
         </a>
     </div>
+    
 </body>
 
 </html>

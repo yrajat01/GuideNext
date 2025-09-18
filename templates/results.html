@@ -4,47 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Recommendations</title>
+    <title>Your Internship Recommendations - GuideNext</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 
 <body>
-    {% if error %}
-    <div style="background: #ffebee; color: #c62828; padding: 15px; border-radius: 5px; margin: 20px;">
-        <strong>Error:</strong> {{ error }}
-    </div>
-    {% endif %}
+    <div class="container">
+        <header class="app-header">
+            <h1>✨ Your Top Recommendations</h1>
+            <p>Based on your skills and preferences</p>
+        </header>
 
-    {% if message %}
-    <div style="background: #e8f5e8; color: #2e7d32; padding: 15px; border-radius: 5px; margin: 20px;">
-        {{ message }}
-    </div>
-    {% endif %}
-    <h1>Your Top Internship Matches</h1>
+        {% if error %}
+        <div class="error-message">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
 
-    {% if recommendations %}
-    <p>We found these internships that are a great fit for you!</p>
-    {% for rec in recommendations %}
-    <div style="border: 2px solid #007bff; padding: 15px; margin: 20px 0; border-radius: 10px;">
-        <h2>{{ rec.internship.title }}</h2>
-        <p><strong>Organization:</strong> {{ rec.internship.organization }}</p>
-        <p><strong>Sector:</strong> {{ rec.internship.sector }}</p>
-        <p><strong>Location:</strong> {{ rec.internship.location }}</p>
-        <p><strong>Description:</strong> {{ rec.internship.description }}</p>
-        <p><strong>Why it's a match:</strong>
-        <ul>
-            {% for reason in rec.reasons %}
-            <li>{{ reason }}</li>
+        {% if message %}
+        <div class="info-message">
+            {{ message }}
+        </div>
+        {% endif %}
+
+        {% if recommendations %}
+        <div class="recommendations-grid">
+            {% for rec in recommendations %}
+            <div class="internship-card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ rec.internship.title }}</h3>
+                    <p class="organization">{{ rec.internship.organization }}</p>
+                </div>
+
+                <div class="card-details">
+                    <span class="sector-badge">{{ rec.internship.sector }}</span>
+                    <span class="location-badge">{{ rec.internship.location }}</span>
+                </div>
+
+                <p>{{ rec.internship.description }}</p>
+
+                <div class="reasons-list">
+                    <strong>🎯 Why it's a great match:</strong>
+                    <ul>
+                        {% for reason in rec.reasons %}
+                        <li>{{ reason }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <small><strong>Match Score:</strong> {{ rec.score }}/100</small>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
-        </p>
-    </div>
-    {% endfor %}
-    {% else %}
-    <p>Sorry, we couldn't find a perfect match based on your inputs. Try broadening your skills or interests!</p>
-    {% endif %}
+        </div>
 
-    <a href="/">← Search Again</a>
+        <div style="text-align: center; margin: 2rem 0;">
+            <a href="/" class="btn-primary">🔍 Search Again</a>
+            <a href="/chat" class="button" style="margin-left: 10px;">💬 Chat with AI Assistant</a>
+        </div>
+
+        {% else %}
+        <div style="text-align: center; padding: 3rem; background: #f8f9fa; border-radius: 10px;">
+            <h2>No matches found yet</h2>
+            <p>Try adjusting your skills or preferences to find better matches</p>
+            <a href="/" class="btn-primary">Try Again</a>
+        </div>
+        {% endif %}
+
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; color: #666;">
+            <p>Powered by GuideNext AI • PM Internship Scheme</p>
+        </footer>
+    </div>
+   
 </body>
 
 </html>
